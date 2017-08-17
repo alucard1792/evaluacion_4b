@@ -76,7 +76,7 @@ public class LogIn implements Serializable {
             
             if (usuario != null && usuario.getEstado() == 1) {
                 System.out.println("entroooo");
-                return "usuarios.xhtml?faces-redirect";
+                return "listarUsuarios.xhtml?faces-redirect=true";
 
             } else {
                 FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, "contraseña, documento incorrecto o usuario desactivado. ", "Contacte con el administrador");
