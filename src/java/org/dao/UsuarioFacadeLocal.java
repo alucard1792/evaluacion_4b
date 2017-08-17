@@ -30,4 +30,6 @@ public interface UsuarioFacadeLocal {
 
     int count();
     
+    Usuario validarUsuario(int documento, String password);
+    
 }

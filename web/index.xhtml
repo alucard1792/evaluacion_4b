@@ -5,28 +5,33 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <head>
         <link href="#{request.contextPath}/resources/css/EstilosFormulario.css" rel="stylesheet"/>
 
     </head>
-    <div class="login-form">
-        <h1>Login</h1>
-        <div class="form-group ">
-            <input type="text" class="form-control" placeholder="Username " id="UserName"></input> 
-            <i class="fa fa-user"></i>
+    <h:form prependId="false">
+        <div class="login-form">
+            <h1>Login</h1>
+            
+            <h:messages id="msj-global" showSummary="true" showDetail="true"></h:messages>
+            
+            <div class="form-group ">
+                <h:inputText class="form-control" a:placeholder="document" a:type="text" value="#{logIn.documento}"></h:inputText>
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="form-group log-status">
+                <h:inputSecret class="form-control" a:placeholder="password" value="#{logIn.password}"></h:inputSecret>
+                <i class="fa fa-lock"></i>
+            </div>
+            <span class="alert">Invalid Credentials</span>
+            <a class="link" href="#">Lost your password?</a>
+            <h:commandButton class="log-btn" action="#{logIn.iniciarSesion()}" value="Sign in"></h:commandButton>
+
+
         </div>
-        <div class="form-group log-status">
-            <input type="password" class="form-control" placeholder="Password" id="Passwod"></input>
-            <i class="fa fa-lock"></i>
-        </div>
-        <span class="alert">Invalid Credentials</span>
-        <a class="link" href="#">Lost your password?</a>
-        <button type="button" class="log-btn" >Log in</button>
-
-
-    </div>
-
+    </h:form>
 
     <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 </html>
