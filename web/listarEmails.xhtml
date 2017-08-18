@@ -25,7 +25,6 @@
                 </thead>
                 <tbody>
                     <c:forEach items="#{listarEmail.listaCorreo}" var="lc">
-                        <c:if test="#{logIn.documento eq lc.usuariosid.documento}">
                             <tr>
                                 <td><h:outputText value="#{lc.id}"></h:outputText></td>
                                 <td><h:outputText value="#{lc.contenido}"></h:outputText></td>
@@ -33,7 +32,6 @@
                                 <td><h:outputText value="#{lc.usuariosid.nombre}"></h:outputText></td>
                                 <td><h:commandButton action="#{listarUsuarios.preparacionEditar(u)}" value="Editar"><h:commandButton action="#{listarUsuarios.preparacionEditar(u)}" value="Eliminar"></h:commandButton></h:commandButton></td>
                             </tr>
-                        </c:if>
                     </c:forEach>
                 </tbody>
 
