@@ -8,36 +8,42 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="titulo">listar usuarios</ui:define>
-
     <ui:define name="contenido">
-        <h2>Bienvenido usuario: #{logIn.usuario.nombre} </h2>
-
-        <h:form>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <td>id</td>
-                        <td>contenido</td>
-                        <td>destinos</td>
-                        <td>usuario emisor</td>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="#{listarEmail.listaCorreo}" var="lc">
+        <c:choose>
+            <c:when test="#{logIn.usuario.rol eq 1}">
+                <h:form>
+                    <table border="1">
+                        <thead>
                             <tr>
-                                <td><h:outputText value="#{lc.id}"></h:outputText></td>
-                                <td><h:outputText value="#{lc.contenido}"></h:outputText></td>
-                                <td><h:outputText value="#{lc.destinos}"></h:outputText></td>
-                                <td><h:outputText value="#{lc.usuariosid.nombre}"></h:outputText></td>
-                                <td><h:commandButton action="#{listarUsuarios.preparacionEditar(u)}" value="Editar"><h:commandButton action="#{listarUsuarios.preparacionEditar(u)}" value="Eliminar"></h:commandButton></h:commandButton></td>
+                                <td>id</td>
+                                <td>contenido</td>
+                                <td>destinos</td>
+                                <td>usuario emisor</td>
+
                             </tr>
-                    </c:forEach>
-                </tbody>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="#{listarEmail.listaCorreo}" var="lc">
+                                <tr>
+                                    <td><h:outputText value="#{lc.id}"></h:outputText></td>
+                                    <td><h:outputText value="#{lc.contenido}"></h:outputText></td>
+                                    <td><h:outputText value="#{lc.destinos}"></h:outputText></td>
+                                    <td><h:outputText value="#{lc.usuariosid.nombre}"></h:outputText></td>
+                                    <td><h:commandButton action="#{listarUsuarios.preparacionEditar(u)}" value="Editar"><h:commandButton action="#{listarUsuarios.preparacionEditar(u)}" value="Eliminar"></h:commandButton></h:commandButton></td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
 
-            </table>
+                    </table>
 
-        </h:form>
+                </h:form>
+            </c:when>
+            <c:otherwise>
+                "no tiene permisos para ver esta pagina buuu"
+                <h:outputText>#{logIn.usuario.rol}</h:outputText>
+            </c:otherwise>
+
+        </c:choose>
     </ui:define>
 
 </ui:composition>
