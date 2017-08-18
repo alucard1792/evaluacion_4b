@@ -8,28 +8,30 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="titulo">Crear usuario</ui:define>
+    <c:if test="#{logIn.usuario.rol eq 1}">
 
-    <ui:define name="contenido">
-        
-        <h:form class="form-control">
-            <label for="nombre">nombre: </label>
-            <h:inputText id="nombre" value="#{crearUsuario.nombre}"></h:inputText>
-            <label for="documento">documento: </label>
-            <h:inputText  id="documento" value="#{crearUsuario.documento}"></h:inputText>
-            <label for="telefono">telefono: </label>
-            <h:inputText  id="telefono" value="#{crearUsuario.telefono}"></h:inputText>
-            <label for="estado">estado</label>
-            <h:inputText  id="estado" value="#{crearUsuario.estado}"></h:inputText>
-            <label for="correo">correo: </label>
-            <h:inputText  id="correo" value="#{crearUsuario.correo}"></h:inputText>
-            <label for="rol">rol</label>
-            <h:inputText  id="rol" value="#{crearUsuario.rol}"></h:inputText>
-            <h:commandButton value="crear" action="#{crearUsuario.crear()}"></h:commandButton>
-        </h:form>
-        
-        
-        
-    </ui:define>
+        <ui:define name="contenido">
+
+
+            <h:form class="form-control">
+                <label for="nombre">nombre: </label>
+                <h:inputText id="nombre" value="#{crearUsuario.nombre}"></h:inputText>
+                <label for="documento">documento: </label>
+                <h:inputText  id="documento" value="#{crearUsuario.documento}"></h:inputText>
+                <label for="telefono">telefono: </label>
+                <h:inputText  id="telefono" value="#{crearUsuario.telefono}"></h:inputText>
+                <label for="estado">estado</label>
+                <h:inputText  id="estado" value="#{crearUsuario.estado}"></h:inputText>
+                <label for="correo">correo: </label>
+                <h:inputText  id="correo" value="#{crearUsuario.correo}"></h:inputText>
+                <label for="rol">rol</label>
+                <h:inputText  id="rol" value="#{crearUsuario.rol}"></h:inputText>
+                <h:commandButton value="crear" action="#{crearUsuario.crear()}"></h:commandButton>
+            </h:form>
+
+
+        </ui:define>
+    </c:if>
 
 </ui:composition>
 
