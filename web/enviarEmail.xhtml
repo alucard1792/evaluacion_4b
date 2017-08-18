@@ -12,19 +12,26 @@
 
     <ui:define name="contenido">
 
-            <h:form prependId="false">
-        <div class="login-form">
-            <h1>Login</h1>
-            
-            <h:messages id="msj-global" showSummary="true" showDetail="true"></h:messages>
-            
+        <h:form>
+            <table>
 
+                <tr>
+                    <td align="right">Para: </td>
+                    <td><h:inputText value="#{emailController.destinatarios}"/> </td>
+                </tr>
+                <tr>
+                    <td align="right">Asunto: </td>
+                    <td><h:inputText value="#{emailController.asunto}"/> </td>
+                </tr>
+                <tr>
+                    <td align="right">Mensaje: </td>
+                    <td><h:inputTextarea value="#{emailController.contenido}"/> </td>
+                </tr>
 
-            <h:commandButton class="log-btn" actionListener="#{crearEmail2.sendEmail()}" value="enviar"></h:commandButton>
+            </table>
+            <h:commandButton value="Send" action="#{emailController.enviarEmails()}"/>
+        </h:form>
 
-
-        </div>
-    </h:form>
 
     </ui:define>
 

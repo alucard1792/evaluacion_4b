@@ -5,8 +5,6 @@
  */
 package org.controllers;
 
-import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Properties;
@@ -14,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
-import javax.faces.bean.RequestScoped;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -30,49 +27,27 @@ import javax.mail.internet.MimeMultipart;
  *
  * @author David
  */
-@Named(value = "crearEmail")
-@RequestScoped
-public class CrearEmail implements Serializable{
+public class Email implements Serializable {
 
-    public final static String HOST_EMAIL_GMAIL = "smtp.gmail.com";
+    public final static String HOST_EMAIL_GMAIL = "gmail.com";
     private String emailRemitente,
             passRemitente,
-            emailDestinatario,
-            asunto,
-            mensaje;
+            emailDestinatario;
 
     private Session session;
 
     private MimeMessage mimeMessage;
 
-    public CrearEmail() {
+    public Email() {
+
     }
-    
-    
-    public CrearEmail(String emailRemitente, String passRemitente, String emailDestinatario) {
+
+    public Email(String emailRemitente, String passRemitente, String emailDestinatario) {
         this.emailRemitente = emailRemitente;
         this.passRemitente = passRemitente;
         this.emailDestinatario = emailDestinatario;
 
     }
-
-    public String getAsunto() {
-        return asunto;
-    }
-
-    public void setAsunto(String asunto) {
-        this.asunto = asunto;
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-    
-    
 
     public String getEmailRemitente() {
         return emailRemitente;
@@ -113,7 +88,7 @@ public class CrearEmail implements Serializable{
     public void setMimeMessage(MimeMessage mimeMessage) {
         this.mimeMessage = mimeMessage;
     }
-    
+
     private void init() {
         try {
             Properties propiedades = new Properties();
@@ -122,7 +97,16 @@ public class CrearEmail implements Serializable{
             propiedades.setProperty("mail.smtp.port", "587");//puertos disponibles: 587, 25 
             propiedades.setProperty("mail.smtp.user", this.emailRemitente);//email del remitente
             propiedades.setProperty("mail.smtp.auth", "true");//si me puedo autenticar en esta aplicacion
-            propiedades.setProperty("mail.smtp.ssl.trust", HOST_EMAIL_GMAIL);
+            propiedades.setProperty("mail.smtp.ssl.trust", "*");
+            propiedades.setProperty("mail.smtp.host", "localhost");
+            propiedades.setProperty("mail.smtp.port", "local_port");
+            propiedades.put("mail.smtp.auth", "true");
+
+            propiedades.put("mail.smtp.starttls.enable", "true");
+
+            propiedades.put("mail.smtp.host", "smtp.gmail.com");
+
+            propiedades.put("mail.smtp.port", "587");
             
             session = Session.getDefaultInstance(propiedades);//parametro son las configuraciones que yo le he hecho
             /*apartir de aca empieso a configurar el mensaje*/
@@ -131,7 +115,7 @@ public class CrearEmail implements Serializable{
             mimeMessage.setRecipients(Message.RecipientType.TO, emailDestinatario);
 
         } catch (MessagingException ex) {
-            Logger.getLogger(CrearEmail.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);
 
         }
 
@@ -140,10 +124,7 @@ public class CrearEmail implements Serializable{
     public boolean enviarSimple(String asunto, String contenido) {
         try {
             init();
-            
-            setEmailRemitente("correofixedup@gmail.com");
-            setPassRemitente("fixedupsena");
-            
+
             Multipart contenidoMensaje = new MimeMultipart();
             BodyPart texto = new MimeBodyPart();
             //texto.setText(contenido);
@@ -152,18 +133,16 @@ public class CrearEmail implements Serializable{
 
             mimeMessage.setSubject(asunto);//continuacion de las lineas 96-98, esas lineas tambien se pueden copiar aca...
             mimeMessage.setContent(contenidoMensaje);
-            
+
             /*HACEMOS EL ENVIO DEL EMAIL*/
-            
             Transport transport = session.getTransport("smtp");//recibe el protocolo y se crea despues de la sesion que hemos creado previamente
             transport.connect(emailRemitente, passRemitente);//intenta hacer la cioneccion
-            
             transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());//aqui se envia el correo como tal y recibe el mensaje que se va a enviar + todos los destinatarios o recipientes
             transport.close();
             return true;
-            
+
         } catch (MessagingException messagingException) {
-            Logger.getLogger(CrearEmail.class.getName()).log(Level.SEVERE, null, messagingException);
+            Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, messagingException);
             return false;
         }
 
@@ -172,7 +151,7 @@ public class CrearEmail implements Serializable{
     public boolean enviarMasivo(String asunto, String contenido) {
         try {
             init();
-            
+
             Multipart contenidoMensaje = new MimeMultipart();
             BodyPart texto = new MimeBodyPart();
             texto.setText(contenido);
@@ -180,22 +159,55 @@ public class CrearEmail implements Serializable{
 
             mimeMessage.setSubject(asunto);//continuacion de las lineas 96-98, esas lineas tambien se pueden copiar aca...
             mimeMessage.setContent(contenidoMensaje);
-            
+
             /*HACEMOS EL ENVIO DEL EMAIL*/
-            
             Transport transport = session.getTransport("smtp");//recibe el protocolo y se crea despues de la sesion que hemos creado previamente
             transport.connect(emailRemitente, passRemitente);//intenta hacer la cioneccion
             transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());//aqui se envia el correo como tal y recibe el mensaje que se va a enviar + todos los destinatarios o recipientes
             transport.close();
             return true;
-            
+
         } catch (MessagingException messagingException) {
-            Logger.getLogger(CrearEmail.class.getName()).log(Level.SEVERE, null, messagingException);
+            Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, messagingException);
             return false;
         }
 
     }
-    
 
+    public boolean enviarImagen(String asunto, String contenido) {
+        try {
+            init();
+
+            BodyPart adjunto = new MimeBodyPart();
+            File file = new File("C:\\Richter.Belmont.full.295085.jpg");
+            adjunto.setDataHandler(new DataHandler(new FileDataSource(file)));
+            adjunto.setFileName(file.getName());
+            //Trick is to add the content-id header here
+            adjunto.setHeader("Content-ID", "image_id");
+
+            Multipart contenidoMensaje = new MimeMultipart();
+            contenidoMensaje.addBodyPart(adjunto);
+            BodyPart texto = new MimeBodyPart();
+            texto.setContent(contenido + "<h1>Attached Image</h1>"
+                    + "<img src=\"cid:image_id\"/>", "text/html");
+            contenidoMensaje.addBodyPart(texto);
+
+            mimeMessage.setSubject(asunto);
+
+            //mimeMessage.setText(contenido);
+            //mimeMessage.setContent(contenido, "text/html");
+            mimeMessage.setContent(contenidoMensaje);
+
+            Transport transport = session.getTransport("smtp");
+            transport.connect(emailRemitente, passRemitente);
+            transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
+            transport.close();
+            return true;
+        } catch (MessagingException ex) {
+            Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+    }
 
 }
