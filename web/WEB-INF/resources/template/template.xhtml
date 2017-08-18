@@ -29,11 +29,16 @@
                         <c:if test="#{logIn.usuario.rol eq 1}">
                             <h:link value="Crear usuario" outcome="/crearUsuario.xhtml"></h:link><br></br>
                         </c:if>
-                        <h:link value="Verificar email enviados" outcome="/listarEmails.xhtml?faces-redirect=true"></h:link><br></br>
+                        <c:if test="#{logIn.usuario.rol eq 1}">
+                            <h:link value="Verificar email enviados" outcome="/listarEmails.xhtml?faces-redirect=true"></h:link><br></br>
+                        </c:if>
+                        <h:link value="Verificar mis emails enviados" outcome="/listarEmailsPropios.xhtml?faces-redirect=true"></h:link><br></br>
                         <h:link value="enviar email" outcome="/enviarEmail.xhtml?faces-redirect=true"></h:link><br></br>
                     </h:form>
                     <ui:insert name="contenido">
-                        "no tiene permisos para ver esta pagina buuu" 
+                        "no tiene permisos para ver esta pagina buuu"
+                            <h:outputText>#{logIn.usuario.rol}</h:outputText>
+
                     </ui:insert>
 
                 </div>

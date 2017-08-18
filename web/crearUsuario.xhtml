@@ -8,7 +8,7 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="titulo">Crear usuario</ui:define>
-    <c:if test="#{logIn.usuario.rol eq 1}">
+    <h:outputText value="#{logIn.usuario.rol}">#{logIn.usuario.rol}</h:outputText>
 
         <ui:define name="contenido">
 
@@ -31,7 +31,5 @@
 
 
         </ui:define>
-    </c:if>
-
 </ui:composition>
 
