@@ -3,21 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/web/listarEmails.xhtml</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/controllers/ListarUsuarios.java</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/controllers/CrearEmail2.java</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/web/listarEmailsPropios.xhtml</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/web/listarUsuarios.xhtml</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/dto/Usuario.java</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/web/WEB-INF/resources/template/template.xhtml</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/controllers/CrearUsuario.java</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/web/index.xhtml</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/controllers/CrearEmail.java</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/dao/UsuarioFacade.java</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/dao/UsuarioFacadeLocal.java</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/controllers/ListarEmail.java</file>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/controllers/TestEmail.java</file>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/controllers/TestEmail2.java</file>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/controllers/TestEmail3.java</file>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/controllers/Email.java</file>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/src/java/org/controllers/EmailController.java</file>
             <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/web/enviarEmail.xhtml</file>
-            <file>file:/C:/Users/David/Documents/NetBeansProjects/evaluacion_4b/web/crearUsuario.xhtml</file>
         </group>
     </open-files>
 </project-private>

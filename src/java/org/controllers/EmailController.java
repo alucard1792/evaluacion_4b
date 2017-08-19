@@ -71,17 +71,18 @@ public class EmailController implements Serializable {
             System.out.println("email"+getEmail());
             email.enviarImagen(Asunto, contenido);
              */
-            /*
-          TestEmail email = new TestEmail();
-          email.main();
-             */
+            
+          TestEmail email = new TestEmail("correofixedup@gmail.com", "fixedupsena", getDestinatarios());
+          email.enviarSimple(Asunto , contenido);
+        
             /*
             TestEmail2 testEmail2 = new TestEmail2();
             testEmail2.main();
             */
+            /*
             TestEmail3 testEmail3 = new TestEmail3();
             testEmail3.main();
-            
+            */
         } catch (Exception e) {
             e.printStackTrace();
 
