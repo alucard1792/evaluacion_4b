@@ -13,6 +13,8 @@
     <ui:define name="contenido">
 
         <h:form>
+            <h:messages id="msj-global" showSummary="true" showDetail="true"></h:messages>
+
             <table>
 
                 <tr>
@@ -29,7 +31,7 @@
                 </tr>
 
             </table>
-            <h:commandButton value="Send" action="#{emailController.enviarEmails()}"/>
+            <h:commandButton value="Send" action="#{emailController.enviarEmails(logIn.usuario)}"/>
         </h:form>
 
 

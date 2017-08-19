@@ -10,8 +10,8 @@
     <ui:define name="titulo">Crear usuario</ui:define>
     <h:outputText value="#{logIn.usuario.rol}">#{logIn.usuario.rol}</h:outputText>
 
-        <ui:define name="contenido">
-
+    <ui:define name="contenido">
+        <c:if test="#{logIn.usuario.rol eq 1}">
 
             <h:form class="form-control">
                 <label for="nombre">nombre: </label>
@@ -28,8 +28,8 @@
                 <h:inputText  id="rol" value="#{crearUsuario.rol}"></h:inputText>
                 <h:commandButton value="crear" action="#{crearUsuario.crear()}"></h:commandButton>
             </h:form>
+        </c:if>
 
-
-        </ui:define>
+    </ui:define>
 </ui:composition>
 

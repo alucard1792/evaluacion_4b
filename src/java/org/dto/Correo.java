@@ -66,6 +66,7 @@ public class Correo implements Serializable {
         this.id = id;
         this.contenido = contenido;
         this.destinos = destinos;
+        
     }
 
     public Integer getId() {
